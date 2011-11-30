@@ -32,9 +32,10 @@ module UglyTrivia
 
     def add(player_name)
       @players.push player_name
+      player_index = how_many_players - 1
       @places[how_many_players] = 0
       @purses[how_many_players] = 0
-      @in_penalty_box[how_many_players] = false
+      @in_penalty_box[player_index] = false
 
       puts "#{player_name} was added"
       puts "They are player number #{@players.length}"
