@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+
+require 'ugly_trivia/game'
+
+not_a_winner = false
+
+game = UglyTrivia::Game.new
+
+game.add 'Chet'
+game.add 'Pat'
+game.add 'Sue'
+
+$rolls = [1,6,6,1,3,1,6,4,1,2,4,6,1,2,3,4,2,3,1,1,6,1,6,6,3,4,6,4,4,2,6,4,2,5,5,4,6,4,1,6,5,5,5,5,1,2,3,3,4,4]
+$roll_index = -1
+$answers = [true,false,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true,true,true]
+$answer_index = -1
+  
+def next_roll
+  $roll_index+=1
+  $rolls[$roll_index]
+end
+
+def next_answer
+  $answer_index+=1
+  $answers[$answer_index]
+end
+
+begin
+  
+  game.roll(next_roll)
+  
+  if next_answer
+    not_a_winner = game.was_correctly_answered
+  else
+    not_a_winner = game.wrong_answer
+  end
+  
+end while not_a_winner
+

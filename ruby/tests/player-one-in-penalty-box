@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+
+require 'ugly_trivia/game'
+
+game = UglyTrivia::Game.new
+
+game.add 'Pat'
+
+game.roll(1)
+
+
